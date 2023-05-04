@@ -38,7 +38,7 @@ class Analyzer
     TFile *file,*file1,*file2,*file3,*file4,*file5,*file6,*file7;
     TTree *tree1,*tree2,*tree3,*tree4,*tree5,*tree6,*tree7;
    
-    TH1F *hist, *hist1,*hist2, *hist3, *hist4, *hist5, *hist6, *hist7, *hist8, *hist9;
+    //TH1F *hist, *hist1,*hist2, *hist3, *hist4, *hist5, *hist6, *hist7, *hist8, *hist9;
     TH2F *hist10, *hist11;
     TH1D *h1;
 
