@@ -107,8 +107,7 @@ class VBFHHModel:
         Minv   = self.M.inv()
         self.coeffs = c.transpose() * Minv # coeffs * s is the sigma, accessing per component gives each sample scaling
         self.sigma  = self.coeffs*s
-        self.v = Minv*s
-
+        self.vc = Minv*s
 
 ## create the objects that will be called in combine
 
