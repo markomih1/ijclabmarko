@@ -98,7 +98,7 @@ void Analyzer::Plot(){
 	hist5->Scale(s5*(-0.571428571428571 * pow(C2V, 2) + 5.58333333333333 * C2V * pow(CV, 2) - 3.86904761904762 * C2V * CV * kl - 1.28571428571429 * pow(CV, 4) + 2.26609351552044e-17 * pow(CV, 3) * kl + 0.142857142857143 * pow(CV, 2) * pow(kl, 2)));
 	hist6->Scale(s6*(1.93373313324411e-17 * pow(C2V, 2) + 1.33333333333333 * C2V * pow(CV, 2) - 1.33333333333333 * C2V * CV * kl));
 
-	TH1D *histo_sum = new TH1D("histo_sum", "Histogram Sum", 100, 0, 2000);
+	TH1D *histo_sum = new TH1D("histo_sum", "Histogram Sum", 100, 0, 2000.);
 	histo_sum->Add(hist1);
 	histo_sum->Add(hist2);
 	histo_sum->Add(hist3);
@@ -106,7 +106,7 @@ void Analyzer::Plot(){
 	histo_sum->Add(hist5);
 	histo_sum->Add(hist6);
 histo_sum->Draw("HIST");
-canvas -> Print("Plot_mass.pdf");
+//canvas -> Print("Plot_mass.pdf");
 
 
 
