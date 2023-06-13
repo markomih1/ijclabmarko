@@ -19,27 +19,27 @@ void Analyzer::Plot(){
 	//first file
 	file1 = new TFile("/afs/cern.ch/user/m/mmihovil/work/rutoviKL/tree-3.root");
 	tree1 = (TTree*)file1 -> Get("lheTree");
-	tree1 -> SetBranchAddress("HH_mass", &HH_mass);
+	tree1 -> SetBranchAddress("vH1", &vH1);
 	//second file
 	file4 = new TFile("/afs/cern.ch/user/m/mmihovil/work/rutoviKL/tree3.root");
 	tree4 = (TTree*)file4 -> Get("lheTree");
-	tree4 -> SetBranchAddress("HH_mass", &HH_mass);
+	tree4 -> SetBranchAddress("vH1", &vH1);
 	//third file
 	file5 = new TFile("/afs/cern.ch/user/m/mmihovil/work/rutoviKL/tree4.root");
 	tree5 = (TTree*)file5 -> Get("lheTree");
-	tree5 -> SetBranchAddress("HH_mass", &HH_mass);
+	tree5 -> SetBranchAddress("vH1", &vH1);
 	//forth file
 	file2 = new TFile("/afs/cern.ch/user/m/mmihovil/work/rutoviK2v/tree1.root");
 	tree2 = (TTree*)file2 -> Get("lheTree");
-	tree2 -> SetBranchAddress("HH_mass", &HH_mass);
+	tree2 -> SetBranchAddress("vH1", &vH1);
 	//fifth file
 	file3 = new TFile("/afs/cern.ch/user/m/mmihovil/work/rutoviK2v/tree2.root");
 	tree3 = (TTree*)file3 -> Get("lheTree");
-	tree3 -> SetBranchAddress("HH_mass", &HH_mass);
+	tree3 -> SetBranchAddress("vH1", &vH1);
 	//sixth file
 	file6 = new TFile("/afs/cern.ch/user/m/mmihovil/work/rutoviKL/tree1_5__1__1.root");
 	tree6 = (TTree*)file6 -> Get("lheTree");
-	tree6 -> SetBranchAddress("HH_mass", &HH_mass);
+	tree6 -> SetBranchAddress("vH1", &vH1);
 
 
 	Long64_t nentries = tree1 -> GetEntriesFast();
@@ -59,28 +59,29 @@ void Analyzer::Plot(){
 	TH1D* hist5 = new TH1D("hist5", "hist5", 100, 0., 2000.);
 	TH1D* hist6 = new TH1D("hist6", "hist6", 100, 0., 2000.);
 	
-	hist1 -> SetTitle("HH_mass");
+	hist1 -> SetTitle("vH1");
 	hist1 -> GetXaxis() -> SetTitle("mass [GeV]");
 	//fixed values for 6 croos sections›
-	Double_t s1=0.05727,s2=0.001226,s3=0.009959,s4=0.01067,s5=0.00945,s6=0.04531;
+
+	Double_t s1=0.05726536750460017,s2=0.0012263273839340449,s3=0.009962158173233178,s4=0.0106684266400100027,s5=0.009452018076382449,s6=0.04581028492999755;
 	//choose parameters
-	Double_t C2V=1,CV=1,kl=1;
+	Double_t C2V=2.5,CV=1,kl=1;
 	
 	Double_t f=s1*(0.0714285714285714*pow(C2V,2) - 0.916666666666667*C2V*pow(CV,2) + 0.702380952380952*C2V*CV*kl + 0.285714285714286*pow(CV,4) - 0.166666666666667*pow(CV,3)*kl + 0.0238095238095238*pow(CV,2)*pow(kl,2)) + s2*(-1.0*pow(C2V,2) - 2.66666666666667*C2V*pow(CV,2) + 4.66666666666667*C2V*CV*kl) + s3*(0.5*pow(C2V,2) + 0.333333333333333*C2V*pow(CV,2) - 0.833333333333333*C2V*CV*kl + 7.08154223600136e-19*pow(CV,3)*kl) + s4*(1.0*pow(C2V,2) - 9.08333333333333*C2V*pow(CV,2) + 6.08333333333333*C2V*CV*kl + 2.0*pow(CV,4) + 0.166666666666667*pow(CV,3)*kl - 0.166666666666667*pow(CV,2)*pow(kl,2)) + s5*(-0.571428571428571*pow(C2V,2) + 5.58333333333333*C2V*pow(CV,2) - 3.86904761904762*C2V*CV*kl - 1.28571428571429*pow(CV,4) + 2.26609351552044e-17*pow(CV,3)*kl + 0.142857142857143*pow(CV,2)*pow(kl,2)) + s6*(1.93373313324411e-17*pow(C2V,2) + 1.33333333333333*C2V*pow(CV,2) - 1.33333333333333*C2V*CV*kl);
 	
 	for (int i = 0; i < nentries; i++){
 			tree1 -> GetEntry(i);
-			hist1 -> Fill(HH_mass);
+			hist1 -> Fill(vH1->Pt());
 			tree2 -> GetEntry(i);
-			hist2 -> Fill(HH_mass);
+			hist2 -> Fill(vH1->Pt());
 			tree3 -> GetEntry(i);
-			hist3 -> Fill(HH_mass);
+			hist3 -> Fill(vH1->Pt());
 			tree4 -> GetEntry(i);
-			hist4 -> Fill(HH_mass);
+			hist4 -> Fill(vH1->Pt());
 			tree5 -> GetEntry(i);
-			hist5 -> Fill(HH_mass);
+			hist5 -> Fill(vH1->Pt());
 			tree6 -> GetEntry(i);
-			hist6 -> Fill(HH_mass);
+			hist6 -> Fill(vH1->Pt());
 	}
 //scaling to unity	
 	hist1->Scale(1.0 / hist1->Integral());
@@ -106,7 +107,7 @@ void Analyzer::Plot(){
 	histo_sum->Add(hist5);
 	histo_sum->Add(hist6);
 histo_sum->Draw("HIST");
-//canvas -> Print("Plot_mass.pdf");
+canvas -> Print("Plot_ptTEST.pdf");
 
 
 
