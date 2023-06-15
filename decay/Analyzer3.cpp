@@ -57,8 +57,8 @@ void Analyzer::Plot(){
             Bottom2.SetPxPyPzE(px->at(1), py->at(1),pz->at(1),energy->at(1));
 
             // Fill the histeenergyogram with the transverse momenta of both particles
-            momentumHist->Fill(Bottom1.Pt()*1000);     
-		 	momentumHist2->Fill(Bottom2.Pt()*1000);  
+            momentumHist->Fill(Bottom1.Pt());     
+		 	momentumHist2->Fill(Bottom2.Pt());  
 
 
 

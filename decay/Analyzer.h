@@ -38,6 +38,6 @@ class Analyzer
   private:
     
    vector<float> *px,*py,*pz,*energy,*mass,*theta;
-   vector<float> *elpx,*elpy,*elpz,*elenergy,*mupx,*mupy,*mupz,*muenergy;
-   
+   vector<float> *elpx,*elpy,*elpz,*elenergy,*mupx,*mupy,*mupz,*muenergy,*pt_vis,*eta_vis,*phi_vis,*m_vis;
+   vector<char> *IsHadronicTau;
 };
