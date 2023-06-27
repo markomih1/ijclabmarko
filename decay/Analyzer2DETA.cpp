@@ -25,7 +25,7 @@ Analyzer::~Analyzer(){
 
 void Analyzer::Plot(){
 	string directoryPath = "/afs/cern.ch/user/m/mmihovil/work/decay/decroots3/";
-	TH2F* Hist = new TH2F("2DHisto", "Higgs mass visible vs Pt_visible Higgs", 100, 0, 130,100,0,1000);
+	TH2F* Hist = new TH2F("2DHisto", "Eta of taus vs Pt_H", 100, 0, 300,100,-5,5);
 	
 	 for (int i = 0; i < 30; i++) {
         // Construct the file name
@@ -36,11 +36,10 @@ void Analyzer::Plot(){
 
         // Access the TTree 
         TTree* tree = dynamic_cast<TTree*>(file->Get("CollectionTree"));
-
-		tree->SetBranchAddress("TruthTausAuxDyn.px", &px);
-		tree->SetBranchAddress("TruthTausAuxDyn.py", &py);
-		tree->SetBranchAddress("TruthTausAuxDyn.pz", &pz);
-		tree->SetBranchAddress("TruthTausAuxDyn.e", &energy);
+        tree->SetBranchAddress("TruthBottomAuxDyn.m", &mass);
+		tree->SetBranchAddress("TruthBottomAuxDyn.px", &px);
+		tree->SetBranchAddress("TruthBottomAuxDyn.py", &py);
+		tree->SetBranchAddress("TruthBottomAuxDyn.pz", &pz);
 		tree->SetBranchAddress("TruthBottomAuxDyn.e", &energy);
         tree->SetBranchAddress("TruthTausAuxDyn.pt_vis", &pt_vis);
 		tree->SetBranchAddress("TruthTausAuxDyn.eta_vis", &eta_vis);
@@ -58,16 +57,6 @@ void Analyzer::Plot(){
             TLorentzVector Particle1;
             TLorentzVector Particle2;
             TLorentzVector higgs;
-            TLorentzVector Tau1;
-            TLorentzVector Tau2;
-			TLorentzVector higgs1;
-            // Set the momentum and energy for particle 1
-            Tau1.SetPxPyPzE(px->at(0), py->at(0),pz->at(0),energy->at(0));
-
-            // Set the momenergytum and energy for particle 2
-            Tau2.SetPxPyPzE(px->at(1), py->at(1),pz->at(1),energy->at(1));
-
-            higgs1=Tau1+Tau2;
             Particle1.SetPtEtaPhiM(pt_vis->at(0), eta_vis->at(0),phi_vis->at(0),m_vis->at(0));
 
             // Set the momenergytum and energy for Particle1 2
@@ -75,20 +64,26 @@ void Analyzer::Plot(){
 
 
             higgs=Particle1+Particle2;
-
+           
+            double deltaR = Particle1.DeltaR(Particle2);
             // Fill the histeenergyogram with the transverse momenta of both particles
-            if(IsHadronicTau->at(0)==1 && IsHadronicTau->at(1)==1)
-                Hist->Fill(higgs.M()/1000.,higgs1.Pt()/1000);             
+
+                Hist->Fill(higgs.Pt()/1000.,Particle1.Eta());     
+		 	    Hist->Fill(higgs.Pt()/1000.,Particle2.Eta());   
     
+
+
+		
+		
 
 	}
 
 	 }
-	TCanvas* canvas = new TCanvas("canvas", "Higgs mass vs Pt Higgs", 800, 600);
+	TCanvas* canvas = new TCanvas("canvas", "Pt Distribution", 800, 600);
 	gStyle -> SetOptStat(0);
 
-	Hist->GetXaxis()->SetTitle("mass [GeV]");
-    Hist->GetYaxis()->SetTitle("Pt [GeV]");
+	Hist->GetXaxis()->SetTitle("Pt [GeV]");
+    Hist->GetYaxis()->SetTitle("#eta");
     Hist->Draw("COLZ");
     TLatex* latex = new TLatex();
 	latex->SetNDC();
@@ -96,8 +91,8 @@ void Analyzer::Plot(){
 	latex->SetTextSize(0.038);
 
 	// Add the constraints as text on the canvas
-	latex->DrawLatex(0.15, 0.80, "#bf{H #rightarrow #tau_{had} #tau_{had} }");
+	latex->DrawLatex(0.65, 0.85, "#bf{H #rightarrow #tau #tau }");
 
 
-	canvas->SaveAs("2Dhh_.png"); 	
+	canvas->SaveAs("2D_H-tautauETA.png"); 	
 }
