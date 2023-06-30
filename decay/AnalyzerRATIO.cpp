@@ -14,7 +14,7 @@ Analyzer::~Analyzer(){
 
 }
 void Analyzer::Plot(){
-	string directoryPath = "/afs/cern.ch/user/m/mmihovil/work/decay/decroots3/";
+	string directoryPath = "/afs/cern.ch/user/m/mmihovil/work/decay/decrootsfile2/";
 	TH1F* Hist = new TH1F("ratio", "", 100, 0, 1.2);
 	TH2F* Hist1 = new TH2F("2DHisto", "Ptvis/Pt vs Pt", 100, 0, 1000,100,0,1);
 	 for (int i = 0; i < 30; i++) {
@@ -65,9 +65,9 @@ void Analyzer::Plot(){
             higgs1=Tau1+Tau2;
 	        //if( (Particle1.Pt()>25000 && TMath::Abs(Particle1.Eta())<2.5) && (Particle2.Pt()>25000 && TMath::Abs(Particle2.Eta())<2.5) && (Tau1.Pt()>25000 && TMath::Abs(Tau1.Eta())<2.5) && (Tau2.Pt()>25000 && TMath::Abs(Tau2.Eta())<2.5) )
 
-           // Hist->Fill(Particle1.Pt()/Tau1.Pt());
-             //Hist->Fill(Particle2.Pt()/Tau2.Pt());
-             Hist->Fill(higgs.Pt()/higgs1.Pt());
+            Hist->Fill(Particle1.Pt()/Tau1.Pt());
+             Hist->Fill(Particle2.Pt()/Tau2.Pt());
+             //Hist->Fill(higgs.Pt()/higgs1.Pt());
            
         /*
 	        if( (Particle1.Pt()>25000 && TMath::Abs(Particle1.Eta())<2.5) && (Particle2.Pt()>25000 && TMath::Abs(Particle2.Eta())<2.5) && (Tau1.Pt()>25000 && TMath::Abs(Tau1.Eta())<2.5) && (Tau2.Pt()>25000 && TMath::Abs(Tau2.Eta())<2.5) ){

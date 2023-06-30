@@ -77,7 +77,7 @@ void Analyzer::Plot(){
 	/*
 	//HHmass
 	canvas = new TCanvas();
-	canvas -> SetCanvasSize(1500, 1500);
+	canvas -> SetCanvasSize(2800, 2000);
 	hist1 = new TH1F("hist", "hist", 100, 0., 2000.);
 	hist2 = new TH1F("hist2", "hist2", 100, 0., 2000.);
 	hist3 = new TH1F("hist3", "hist3", 100, 0., 2000.);
@@ -85,6 +85,8 @@ void Analyzer::Plot(){
 	hist1->GetYaxis()->SetRangeUser(0, 8000);
 	hist1 -> SetTitle("HH_mass");
 	hist1 -> GetXaxis() -> SetTitle("mass [GeV]");
+	hist1 -> GetYaxis() -> SetTitle("Entries");
+
 
 	for (int i = 0; i < nentries; i++){
 			tree1 -> GetEntry(i);
@@ -120,7 +122,7 @@ void Analyzer::Plot(){
 /*
 //jj mass
 canvas = new TCanvas();
-	canvas -> SetCanvasSize(1500, 1500);
+	canvas -> SetCanvasSize(2800, 2000);
 	hist1 = new TH1F("hist", "hist", 100, 0., 4000.);
 	hist2 = new TH1F("hist2", "hist2", 100, 0., 4000.);
 	hist3 = new TH1F("hist3", "hist3", 100, 0., 4000.);
@@ -128,6 +130,7 @@ canvas = new TCanvas();
 	hist1->GetYaxis()->SetRangeUser(0, 4000);
 	hist1 -> SetTitle("jj_mass");
 	hist1 -> GetXaxis() -> SetTitle("mass [GeV]");
+	hist1 -> GetYaxis() -> SetTitle("Entries");
 
 	for (int i = 0; i < nentries; i++){
 			tree1 -> GetEntry(i);
@@ -351,18 +354,17 @@ cout << hist2->GetEntries()<<endl;
 
 /////////// RAPIDITY AND JJ_mass
 
-/*
-
 canvas = new TCanvas();
-	canvas -> SetCanvasSize(1500, 1500);
+	canvas -> SetCanvasSize(2800, 2000);
 	hist1 = new TH1F("hist", "hist", 100, 0., 4000.);
 	hist2 = new TH1F("hist2", "hist2", 100, 0., 4000.);
 	hist3 = new TH1F("hist3", "hist3", 100, 0., 4000.);
 	hist4 = new TH1F("hist4", "hist4", 100, 0., 4000.);
 	hist5 = new TH1F("hist5", "hist5", 100, 0., 4000.);
-	hist1->GetYaxis()->SetRangeUser(0, 8000);
+	hist1->GetYaxis()->SetRangeUser(0, 3500);
 	hist1 -> SetTitle("jj_mass dependence on rapidity for K2v=3");
 	hist1 -> GetXaxis() -> SetTitle("mass [GeV]");
+	hist1 -> GetYaxis() -> SetTitle("Entries");
 
 	for (int i = 0; i < nentries; i++){
 			tree1 -> GetEntry(i);
@@ -399,12 +401,13 @@ canvas = new TCanvas();
 	hist4-> Draw("HIST SAME");
 	hist5->SetLineColor(kGreen);
 	hist5-> Draw("HIST SAME");
-	TLegend* legend1 = new TLegend(0.7, 0.7, 0.9, 0.9); 
-	legend1->AddEntry(hist1, "HH mass", "l"); 
+	TLegend* legend1 = new TLegend(0.56, 0.7, 0.9, 0.9); 
+	legend1->AddEntry(hist1, "jj mass", "l"); 
 	legend1->AddEntry(hist2, "eta>4.5 (atleast 1 jet) [9.2993]", "l"); 
 	legend1->AddEntry(hist3, "2.5<eta<4.5 (atleast 1 jet) [79.233%]", "l"); 
 	legend1->AddEntry(hist4, "eta<2.5 (both jets) [11.467%]", "l"); 
 	legend1->AddEntry(hist5, "2.5<eta<4.5 (both jets) [24.194%]", "l"); 
+	legend1->SetTextSize(0.02);
 	legend1->Draw();
 	cout << "eta>4.5: " << hist2->GetEntries() *100 / 150000 <<"%" << endl;
 	cout << "2.5<eta<4.5: " << hist3->GetEntries() *100 / 150000 <<"%" << endl;
@@ -412,6 +415,6 @@ canvas = new TCanvas();
 	cout << "both in[2.4,4.5]: " << hist5->GetEntries() *100 / 150000 <<"%" << endl;
 	canvas -> Print("Plot_mjj_eta.pdf");
 }
-*/
+
 
 

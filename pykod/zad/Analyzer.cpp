@@ -65,7 +65,7 @@ void Analyzer::Plot(){
 
 	Double_t s1=0.05726536750460017,s2=0.0012263273839340449,s3=0.009962158173233178,s4=0.0106684266400100027,s5=0.009452018076382449,s6=0.04581028492999755;
 	//choose parameters
-	Double_t C2V=2.5,CV=1,kl=1;
+	Double_t C2V=5,CV=1,kl=1;
 	
 	Double_t f=s1*(0.0714285714285714*pow(C2V,2) - 0.916666666666667*C2V*pow(CV,2) + 0.702380952380952*C2V*CV*kl + 0.285714285714286*pow(CV,4) - 0.166666666666667*pow(CV,3)*kl + 0.0238095238095238*pow(CV,2)*pow(kl,2)) + s2*(-1.0*pow(C2V,2) - 2.66666666666667*C2V*pow(CV,2) + 4.66666666666667*C2V*CV*kl) + s3*(0.5*pow(C2V,2) + 0.333333333333333*C2V*pow(CV,2) - 0.833333333333333*C2V*CV*kl + 7.08154223600136e-19*pow(CV,3)*kl) + s4*(1.0*pow(C2V,2) - 9.08333333333333*C2V*pow(CV,2) + 6.08333333333333*C2V*CV*kl + 2.0*pow(CV,4) + 0.166666666666667*pow(CV,3)*kl - 0.166666666666667*pow(CV,2)*pow(kl,2)) + s5*(-0.571428571428571*pow(C2V,2) + 5.58333333333333*C2V*pow(CV,2) - 3.86904761904762*C2V*CV*kl - 1.28571428571429*pow(CV,4) + 2.26609351552044e-17*pow(CV,3)*kl + 0.142857142857143*pow(CV,2)*pow(kl,2)) + s6*(1.93373313324411e-17*pow(C2V,2) + 1.33333333333333*C2V*pow(CV,2) - 1.33333333333333*C2V*CV*kl);
 	
@@ -84,6 +84,7 @@ void Analyzer::Plot(){
 			hist6 -> Fill(vH1->Pt());
 	}
 //scaling to unity	
+
 	hist1->Scale(1.0 / hist1->Integral());
 	hist2->Scale(1.0 / hist2->Integral());
 	hist3->Scale(1.0 / hist3->Integral());
@@ -91,6 +92,8 @@ void Analyzer::Plot(){
 	hist5->Scale(1.0 / hist5->Integral());
 	hist6->Scale(1.0 / hist6->Integral());	
 	
+	
+	/*
 //scaling by cross section and the cooresponfing function
 	hist1->Scale(s1*( 0.0714285714285714 * pow(C2V, 2) - 0.916666666666667 * C2V * pow(CV, 2) + 0.702380952380952 * C2V * CV * kl + 0.285714285714286 * pow(CV, 4) - 0.166666666666667 * pow(CV, 3) * kl + 0.0238095238095238 * pow(CV, 2) * pow(kl, 2)));
 	hist2->Scale(s2*(-1.0 * pow(C2V, 2) - 2.66666666666667 * C2V * pow(CV, 2) + 4.66666666666667 * C2V * CV * kl));
@@ -108,10 +111,10 @@ void Analyzer::Plot(){
 	histo_sum->Add(hist6);
 histo_sum->Draw("HIST");
 canvas -> Print("Plot_ptTEST.pdf");
+*/
 
 
 
-/*
 //ABCI parameters
 	hist1->Scale((0.0238095238095238*s1 - 0.166666666666667*s4 + 0.142857142857143*s5)*pow(CV,2)*pow(kl,2));
 	hist2->Scale((0.285714285714286*s1 + 2.0*s4 - 1.28571428571429*s5)*pow(CV,4));	
@@ -145,7 +148,7 @@ canvas -> Print("Plot_ptTEST.pdf");
 	hist1->GetYaxis()->SetRangeUser(-0.0018, 0.0015);
 
 
-canvas -> Print("Plot_abc.pdf");
-*/
+canvas -> Print("Plot_abc2.pdf");
+
 
 }

@@ -22,6 +22,8 @@
 #include "TH1D.h"
 #include <iomanip>
 #include <TLatex.h>
+#include <thread>
+
 
 #include <TGraph2D.h>
 using namespace std;
@@ -32,12 +34,13 @@ class Analyzer
     Analyzer();
     ~Analyzer();
     void Plot();
+
     
 
 
   private:
     
-   vector<float> *px,*py,*pz,*energy,*mass,*theta;
+   vector<float> *px,*py,*pz,*energy,*mass,*theta,*pxb,*pyb,*pzb,*energyb;
    vector<float> *elpx,*elpy,*elpz,*elenergy,*mupx,*mupy,*mupz,*muenergy,*pt_vis,*eta_vis,*phi_vis,*m_vis;
    vector<char> *IsHadronicTau;
 };

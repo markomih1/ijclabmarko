@@ -197,19 +197,20 @@ c_f[C2V]=c_final*100;
 
    	canvas->SetGrid();
     // Set the axis labels and plot title
-    graph1->GetXaxis()->SetTitle("C2V");
+    graph1->GetXaxis()->SetTitle("K2V");
     graph1->GetYaxis()->SetTitle(" % of total events");
     graph1->SetTitle("");
 
 	TLegend* legend = new TLegend(0.7, 0.7, 0.9, 0.9);
+
     legend->AddEntry(graph1, "Boosted events","l");
-    legend->AddEntry(graph2, "Semi-resolved events", "l");
-    legend->AddEntry(graph3, "Fully resolved events", "l");
+    legend->AddEntry(graph2, "Semi-resolved events ", "l");
+    legend->AddEntry(graph3, "Fully resolved events ", "l");
     legend->Draw();
    
     // Update the canvas
     canvas->Update();
-	canvas->SaveAs("graphK2V.png"); 
+	canvas->SaveAs("graphK2VTEST2.png"); 
 
 
 

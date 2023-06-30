@@ -24,7 +24,7 @@ Analyzer::~Analyzer(){
 
 
 void Analyzer::Plot(){
-	string directoryPath = "/afs/cern.ch/user/m/mmihovil/work/decay/decroots3/";
+	string directoryPath = "/afs/cern.ch/user/m/mmihovil/work/decay/decrootsfile2/";
 	TH1F* massHist = new TH1F("massHist", "MASS Distribution", 100, 0, 200);
 	TH1F* massHist2 = new TH1F("massHist2", "MASS Distribution", 300, 0, 2000);
 
